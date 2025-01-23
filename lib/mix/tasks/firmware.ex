@@ -52,7 +52,7 @@ defmodule Mix.Tasks.Firmware do
 
     config = Mix.Project.config()
     fw_out = opts[:output] || Nerves.Env.firmware_path(config)
-    build_firmware(config, system_path, fw_out)
+    # build_firmware(config, system_path, fw_out)
   end
 
   @doc false
@@ -79,6 +79,7 @@ defmodule Mix.Tasks.Firmware do
   end
 
   defp build_release() do
+    # TODO: steps
     Mix.Task.run("release", [])
   end
 
