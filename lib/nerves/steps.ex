@@ -72,6 +72,7 @@ defmodule Nerves.Steps do
     Nerves.Rel2fw.make_squashfs(
       build_dir(),
       project_dir(),
+      release_path()
     )
     Logger.error("make_squashfs not fully implemented")
     release
