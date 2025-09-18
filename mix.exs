@@ -38,7 +38,7 @@ defmodule Nerves.MixProject do
 
   defp deps do
     [
-      {:igniter, "~> 0.5", optional: true, runtime: false},
+      {:igniter, "~> 0.6", optional: true, runtime: false},
       {:castore, "~> 0.1 or ~> 1.0"},
       {:elixir_make, "~> 0.6", runtime: false},
       {:jason, "~> 1.2"},

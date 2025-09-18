@@ -42,16 +42,43 @@ if Code.ensure_loaded?(Igniter) do
         # Groups allow for overlapping arguments for tasks by the same author
         # See the generators guide for more.
         group: :nerves,
+        dep_opts: [runtime: false],
+        # A list of environments that this should be installed in.
+        only: nil,
         # *other* dependencies to add
         # i.e `{:foo, "~> 2.0"}`
         adds_deps: [],
         # *other* dependencies to add and call their associated installers, if they exist
         # i.e `{:foo, "~> 2.0"}`
-        installs: [],
+        installs: [
+          {:igniter, "~> 0.6", only: [:dev, :test], override: true},
+          {:shoehorn, "~> 0.9.1"},
+          # TODO: Toolshed needs an installer to modify rootfs_overlay/etc/iex.exs
+          {:toolshed, "~> 0.4.0"},
+          # Old nerves_pack deps
+          # TODO: nerves_ssh could have an installer for the some default config and authorized keys
+          {:nerves_ssh, "> 0.0.0"},
+          {:nerves_runtime,
+           github: "nerves-project/nerves_runtime",
+           branch: "igniter-installer",
+           targets: [],
+           override: true},
+          {:nerves_time,
+           github: "PJUllrich/nerves_time", branch: "add-igniter-install-task", targets: []},
+          {:nerves_motd, "> 0.0.0", targets: []},
+          {:ring_logger,
+           github: "nerves-project/ring_logger", branch: "igniter-installer", targets: []},
+          {:vintage_net,
+           github: "maennchen/vintage_net", branch: "igniter", targets: [], override: true},
+          {:vintage_net_direct, "> 0.0.0", targets: []},
+          {:vintage_net_ethernet,
+           github: "maennchen/vintage_net_ethernet", branch: "jm/igniter", targets: []},
+          {:vintage_net_wifi,
+           github: "maennchen/vintage_net_wifi", branch: "jm/igniter", targets: []},
+          {:mdns_lite, github: "wln/mdns_lite", branch: "igniter-warning-type-issue", targets: []}
+        ],
         # An example invocation
         example: __MODULE__.Docs.example(),
-        # A list of environments that this should be installed in.
-        only: nil,
         # a list of positional arguments, i.e `[:file]`
         positional: [],
         # Other tasks your task composes using `Igniter.compose_task`, passing in the CLI argv
