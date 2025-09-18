@@ -38,6 +38,7 @@ defmodule Nerves.MixProject do
 
   defp deps do
     [
+      {:igniter, "~> 0.5", optional: true, runtime: false},
       {:castore, "~> 0.1 or ~> 1.0"},
       {:elixir_make, "~> 0.6", runtime: false},
       {:jason, "~> 1.2"},
@@ -45,7 +46,7 @@ defmodule Nerves.MixProject do
       {:ex_doc, "~> 0.22", only: :docs, runtime: false},
       {:dialyxir, "~> 1.0", only: :dev, runtime: false},
       {:plug, "~> 1.10", only: :test},
-      {:mime, "~> 2.0", only: :test},
+      {:mime, "~> 2.0", optional: true},
       {:plug_cowboy, "~> 1.0 or ~> 2.0", only: :test}
     ]
   end
